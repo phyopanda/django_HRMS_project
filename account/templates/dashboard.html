@@ -1,0 +1,447 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Employees {% endblock %}
+{% block body_block %}
+
+<main class="main-content position-relative border-radius-lg ">
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-success text-center rounded-circle">
+                    <i class="fa fa-laptop text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Admin</p>
+                    <h5 class="font-weight-bolder">
+                      {{admin_count}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-2 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-success text-center rounded-circle">
+                    <i class="fa fa-users text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Employees</p>
+                    <h5 class="font-weight-bolder">
+                      {{emp_total}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-warning text-center rounded-circle">
+                    <i class="fa fa-pencil-square-o text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Contract</p>
+                    <h5 class="font-weight-bolder">
+                      {{cont_total}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-success text-center rounded-circle">
+                    <i class="fa fa-sitemap text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Job</p>
+                    <h5 class="font-weight-bolder">
+                      {{job_total}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-success text-center rounded-circle">
+                    <i class="fa fa-id-card text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Departments</p>
+                    <h5 class="font-weight-bolder">
+                      {{dept_total}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-success text-center rounded-circle">
+                    <i class="fa fa-sitemap text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Recruitment</p>
+                    <h5 class="font-weight-bolder">
+                      {{rect_total}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-info shadow-success text-center rounded-circle">
+                    <i class="fa fa-wallet text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Expense</p>
+                    <h5 class="font-weight-bolder">
+                      {{expen_total}}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Employee</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center">
+                <tbody>
+                  {% if employees %}
+                  {% for employee in employees  %}
+                  <tr>
+                    <td class="w-30">
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div>
+                          <img src="{{employee.image.url}}"  width="50" height="50" alt="Country flag">
+                        </div>
+                        <div class="ms-4">
+                          <p class="text-xs font-weight-bold mb-0">Name</p>
+                          <h6 class="text-sm mb-0">{{ employee.name }}</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Phone</p>
+                        <h6 class="text-sm mb-0">{{ employee.phone }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Email</p>
+                        <h6 class="text-sm mb-0">{{ employee.email }}</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle text-sm">
+                      <div class="col text-center">
+                        <a class="dropdown-item" href="{% url 'employee_detail' pk=employee.pk %}">
+                          <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  {% else %}
+                      <p class="lead text-center"> No Associated Employee</p>
+                {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card card-carousel overflow-hidden h-100 p-0">
+            <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
+              <div class="carousel-inner border-radius-lg h-100">
+                <div class="carousel-item h-100 active" style="background-image: url('{% static "img/carousel-1.jpg"%}');
+      background-size: cover;">
+                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                      <i class="fa fa-laptop text-dark opacity-10"></i>
+                    </div>
+                    <h5 class="text-white mb-1">Get started with Argon</h5>
+                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+                  </div>
+                </div>
+                <div class="carousel-item h-100" style="background-image: url('{% static "img/carousel-2.jpg"%}');
+      background-size: cover;">
+                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                      <i class="fa fa-laptop text-dark opacity-10"></i>
+                    </div>
+                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
+                    <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
+                  </div>
+                </div>
+                <div class="carousel-item h-100" style="background-image: url('{% static "img/carousel-3.jpg"%}');
+      background-size: cover;">
+                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                      <i class="fa fa-laptop text-dark opacity-10"></i>
+                    </div>
+                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
+                    <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Expense</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center">
+                <tbody>
+                  {% if expenses %}
+                  {% for expense in expenses %}
+                  <tr>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Title</p>
+                        <h6 class="text-sm mb-0">{{ expense.title }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Value</p>
+                        <h6 class="text-sm mb-0">{{ expense.value }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Date</p>
+                        <h6 class="text-sm mb-0">{{ expense.date }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Cash Out</p>
+                        <h6 class="text-sm mb-0">{{ expense.cash_out }}</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle text-sm">
+                      <div class="col text-center">
+                        <a class="dropdown-item" href="{% url 'expense_detail' pk=expense.pk %}">
+                          <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  {% else %}
+                      <p class="lead text-center"> No Associated Expense</p>
+                {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-header pb-0 p-3">
+              <h6 class="mb-0">Department</h6>
+            </div>
+            <div class="card-body p-3">
+              <ul class="list-group">
+                {% if departments %}
+                {% for department in departments %}
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex flex-column">
+                      <p class="text-xs font-weight-bold mb-0">Id</p>
+                      <h6 class="mb-1 text-dark text-sm">{{ forloop.counter }}</h6>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex flex-column">
+                      <p class="text-xs font-weight-bold mb-0">Name</p>
+                      <h6 class="mb-1 text-dark text-sm">{{ department.name }}</h6>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <a class="dropdown-item" href="{% url 'department_detail' pk=department.pk %}">
+                      <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View
+                    </a>
+                  </div>
+                </li>
+                {% endfor %}
+                {% else %}
+                      <p class="lead text-center"> No Associated Department</p>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Recruitment</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center">
+                <tbody>
+                  {% if recruitments %}
+                  {% for recruitment in recruitments %}
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div>
+                          <img src="{{recruitment.image.url}}"  width="50" height="50" alt="Country flag">
+                        </div>
+                        <div class="ms-4">
+                          <p class="text-xs font-weight-bold mb-0">Name</p>
+                          <h6 class="text-sm mb-0">{{ recruitment.name }}</h6>
+                      </div>
+                    </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Position</p>
+                        <h6 class="text-sm mb-0">{{ recruitment.position }}</h6>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <p class="text-xs font-weight-bold mb-0">Skill</p>
+                        <h6 class="text-sm mb-0">{{ recruitment.skill }}</h6>
+                      </div>
+                    </td>
+                    <td class="align-middle text-sm">
+                      <div class="col text-center">
+                        <a class="dropdown-item" href="{% url 'recruitment_detail' pk=recruitment.pk %}">
+                          <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  {% else %}
+                      <p class="lead text-center"> No Associated Recruitment</p>
+                {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-header pb-0 p-3">
+              <h6 class="mb-0">Contracts</h6>
+            </div>
+            <div class="card-body p-3">
+              <ul class="list-group">
+                {% if contracts %}
+                {% for contract in contracts %}
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex flex-column">
+                      <p class="text-xs font-weight-bold mb-0">Name</p>
+                      <h6 class="mb-1 text-dark text-sm">{{ contract.name }}</h6>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex flex-column">
+                      <p class="text-xs font-weight-bold mb-0">Start Date</p>
+                      <h6 class="mb-1 text-dark text-sm">{{ contract.start_date }}</h6>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex flex-column">
+                      <p class="text-xs font-weight-bold mb-0">End Date</p>
+                      <h6 class="mb-1 text-dark text-sm">{{ contract.end_date }}</h6>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <a class="dropdown-item" href="{% url 'contract_detail' pk=contract.pk %}">
+                      <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View
+                    </a>
+                  </div>
+                </li>
+                {% endfor %}
+                {% else %}
+                      <p class="lead text-center"> No Associated Contract</p>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Expense {% endblock %}
+{% block body_block %}
+    <nav aria-label="breadcrumb">
+      <div class=" text-end">
+        <a class="btn bg-gradient-success mb-0" href="{% url 'expense_create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Expense</a>
+      </div>
+      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="#">Expense</a></li>
+        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tables</li>
+      </ol>
+    </nav>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h5><b>Expense table</b></h5>
+            </div class="table-responsive p-0">
+            <div class="card-body px-0 pt-0 pb-2">
+              <div >
+                <table class="table align-items-center justify-content-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-bolder">Id</th>
+                      <th class="font-weight-bolder">Title</th>
+                      <th class="font-weight-bolder">Name</th>
+                      <th class="font-weight-bolder">Date</th>
+                      <th class="font-weight-bolder">Value</th>
+                      <th class="font-weight-bolder">Cash Out</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for expense in expense_list %}
+                    <tr>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ forloop.counter }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ expense.title }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ expense.employee_id }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ expense.date }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ expense.value }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ expense.cash_out }}</h6>
+                      </td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-cog "></i>Manage
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'expense_detail' pk=expense.pk %}">
+                                 <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View Expense
+                                </a>
+                            </li>
+                            {% if user.is_superuser %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'expense_update' pk=expense.pk %}">
+                                    <i class="fa fa-edit text-info fa-fw"></i>&nbsp;Edit Expense
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'expense_delete' pk=expense.pk %}">
+                                    <i class="fa fa-trash text-danger fa-fw"></i>&nbsp;Delete Expense
+                                </a>
+                            </li>
+                            {% endif %}
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock body_block %}

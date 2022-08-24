@@ -1,0 +1,114 @@
+{% load static %}
+{% load bootstrap4 %}
+<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="{% url 'account' %}" target="_blank">
+        <img src="{% static '/img/team-2.jpg' %}" class="navbar-brand-img h-100 rounded-circle" alt="main_logo">
+        <span class="ms-1 font-weight-bold">{{user.username | upper}}</span><br>
+        <p class="ms-1 ">{{user.email}}</p>
+      </a>
+    </div><hr>
+    <hr class="horizontal dark mt-0">
+    <div class="w-auto" id="sidenav-collapse-main">
+      <ul class="navbar-nav nav">
+        <li class="nav-item">
+          <a class="nav-link hvr-grow " href="{% url 'dashboard' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-laptop text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow " href="{% url 'employee_list' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-users text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Employee</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'contract_list' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-pencil-square-o text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Contract</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'job_list' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-briefcase text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Job</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'department_create' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-plus text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1 ">Departments</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <a href="{% url 'department_list' %}"><h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Department List</h6></a>
+        </li>
+        {% for department in department_list %}
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'department_detail' pk=department.pk %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-sitemap text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">{{ department.name }}</span>
+          </a>
+        </li>
+        {% endfor %}
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'recruitment_list' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-id-card text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Recruitment</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'expense_list' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-wallet text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Expense</span>
+          </a>
+        </li>
+		    <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'account' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-cnter justify-content-center">
+              <i class="fa fa-user-circle-o text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'login' %}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-sign-in text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Sign In</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hvr-grow" href="{% url 'logout' %}">
+            <div class=" icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-sign-out text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Log Out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+	
+  </aside>

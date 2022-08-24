@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Department {% endblock %}
+{% block body_block %}
+    <nav aria-label="breadcrumb">
+      <div class=" text-end">
+        <a class="btn bg-gradient-success mb-0" href="{% url 'department_create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Department</a>
+      </div>
+      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="#">Department</a></li>
+        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tables</li>
+      </ol>
+    </nav>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h5><b>Department table</b></h5>
+            </div class="table-responsive p-0">
+            <div class="card-body px-0 pt-0 pb-2">
+              <div >
+                <table class="table align-items-center justify-content-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-bolder">Id</th>
+                      <th class="font-weight-bolder">Name</th>
+                      <th class="font-weight-bolder">History</th>
+                      <th class="font-weight-bolder">Expected Employees</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for department in department_list %}
+                    <tr>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ forloop.counter }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ department.name }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ department.history }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ department.expected_employees }}</h6>
+                      </td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-cog "></i>Manage
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'department_detail' pk=department.pk %}">
+                                 <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View Department
+                                </a>
+                            </li>
+                            {% if user.is_superuser %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'department_update' pk=department.pk %}">
+                                    <i class="fa fa-edit text-info fa-fw"></i>&nbsp;Edit Department
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'department_delete' pk=department.pk %}">
+                                    <i class="fa fa-trash text-danger fa-fw"></i>&nbsp;Delete Department
+                                </a>
+                            </li>
+                            {% endif %}
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock body_block %}
