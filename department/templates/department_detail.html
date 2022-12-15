@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Department {% endblock %}
+{% block body_block %}
+    <nav aria-label="breadcrumb">
+      <div class=" text-end">
+        <a class="btn bg-gradient-success mb-0" href="{% url 'employee_create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Employee</a>
+      </div>
+      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="#">{{dept.name | capfirst}} Department</a></li>
+        <li class="breadcrumb-item text-sm text-white active" aria-current="page">{{dept.history}}</li>
+      </ol>
+    </nav>
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h5><b>{{dept.name | capfirst}}</b></h5>
+            </div class="table-responsive p-0">
+            <div class="card-body px-0 pt-0 pb-2">
+              <div >
+                <table class="table align-items-center justify-content-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-bolder">Id</th>
+                      <th class="font-weight-bolder">Emp.no</th>
+                      <th class="font-weight-bolder">Name</th>
+                      <th class="font-weight-bolder">Phone</th>
+                      <th class="font-weight-bolder">Email</th>
+                      <th class="font-weight-bolder">Salary</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if employees %}
+                      {% for employee in employees  %}
+                    <tr>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ forloop.counter }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ employee.emp_id }}</h6>
+                      </td>
+                      <td>
+                          <img src="{{ employee.image.url }}" class="avatar avatar-sm me-3">
+                          <h6 class="mb-0 text-sm">{{ employee.name }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ employee.phone }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ employee.email }}</h6>
+                      </td>
+                      <td>
+                        <h6 class="mb-0 text-sm">{{ employee.salary }}</h6>
+                      </td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn bg-gradient-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-cog "></i>Manage
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'employee_detail' pk=employee.pk %}">
+                                 <i class="fa fa-eye text-success fa-fw"></i>&nbsp;View Employee
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'employee_update' pk=employee.pk %}">
+                                    <i class="fa fa-edit text-info fa-fw"></i>&nbsp;Edit Employee
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'employee_delete' pk=employee.pk %}">
+                                    <i class="fa fa-trash text-danger fa-fw"></i>&nbsp;Delete Employee
+                                </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  {% else %}
+                      <p class="lead text-center"> No Associated Employee</p>
+                {% endif %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock body_block %}

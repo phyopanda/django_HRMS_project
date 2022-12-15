@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% block head_block %}
+{% endblock %}
+{% block body_block %}
+    <div class="container">
+        <h1> Create Job </h1>
+        <form method="POST" action="{% url 'job_create' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="text-center">
+                <input type="submit" value="Create" class="btn-action btn btn-primary btn-large">
+                <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

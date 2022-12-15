@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block body_block %}
+    <nav aria-label="breadcrumb">
+      <div class=" text-end">
+        <a class="btn bg-gradient-dark mb-0" href="{% url 'job_create' %}"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add Job</a>
+      </div>
+      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="#">Job</a></li>
+        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Delete</li>
+      </ol>
+    </nav>
+    <div class="container-fluid py-1">
+      <div class="row">
+        <div class="col-6">
+          <div class="card mb-4">
+            <div class="card-header pb-0">
+              <h5><b>Job Delete</b></h5>
+            </div class="table-responsive p-0">
+            <div class="card-body px-0 pt-0 pb-2">
+                <table class="table align-items-center justify-content-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="font-weight-bolder">Id</th>
+                      <th class="font-weight-bolder">{{ job.id }}</th>
+                    </tr>
+                    <tr>
+                      <th class="font-weight-bolder">Name</th>
+                      <th class="font-weight-bolder">{{ job.name }}</th>
+                    </tr>
+                    <tr>
+                      <th class="font-weight-bolder">Expected Employees</th>
+                      <th class="font-weight-bolder">{{ job.expected_employees }}</th>
+                    </tr>
+                  </thead>
+                </table>
+                </div>
+            </div>
+             <form method="POST">
+                {% csrf_token %}
+                <a href="javascript:history.back()" class="btn btn-dark"> Back </a>
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
